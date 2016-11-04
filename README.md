@@ -1,3 +1,15 @@
+=========================================================================
+Cartographer ROS Integration without the need to use catkin_make_isolated
+=========================================================================
+
+
+All the credits to the Google team and contributors behind this project.
+This branch is intended to be used directly in any ROS workspace without 
+the need to compile using catkin_make_isolated and assuming that the 
+libraries Cartographer and Ceres are pre-installed in the system, removing
+the need to compile every time.
+
+
 .. Copyright 2016 The Cartographer Authors
 
 .. Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,13 +24,7 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 
-=========================================================================
-Cartographer ROS Integration without the need to use catkin_make_isolated
-=========================================================================
+## Please refer to the original doc pages and git repos
 
-
-All the credits to the Google team and contributors behind this project.
-This branch is intended to be used directly in any ROS workspace without 
-the need to compile using catkin_make_isolated and assuming that the 
-libraries Cartographer and Ceres are pre-installed in the system, removing
-the need to compile every time.
+- https://google-cartographer-ros.readthedocs.io/en/latest/
+- https://google-cartographer-ros-for-turtlebots.readthedocs.io/en/latest/
