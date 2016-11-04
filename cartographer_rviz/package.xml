@@ -32,8 +32,6 @@
 
   <buildtool_depend>catkin</buildtool_depend>
 
-  <build_depend>g++-static</build_depend>
-
   <depend>cartographer</depend>
   <depend>cartographer_ros_msgs</depend>
 

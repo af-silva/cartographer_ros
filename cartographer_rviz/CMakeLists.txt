@@ -12,23 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.3)
 
 project(cartographer_rviz)
 
-set(PACKAGE_DEPENDENCIES
-  cartographer_ros_msgs
-  eigen_conversions
-  roscpp
-  rviz
-)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -march=corei7 -std=c++0x") 
+set(PACKAGE_DEPENDENCIES cartographer_ros_msgs eigen_conversions roscpp rviz)
 
 find_package(Cartographer REQUIRED)
-include("${CARTOGRAPHER_CMAKE_DIR}/functions.cmake")
-google_initialize_cartographer_project()
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${CARTOGRAPHER_CMAKE_DIR}/modules)
 
+find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED COMPONENTS system iostreams)
 find_package(catkin REQUIRED COMPONENTS ${PACKAGE_DEPENDENCIES})
+
+include_directories(
+  ${EIGEN3_INCLUDE_DIR}
+  ${CARTOGRAPHER_INCLUDE_DIR}
+  ${PCL_INCLUDE_DIRS} 
+  ${OGRE_INCLUDE_DIRS}
+  ${catkin_INCLUDE_DIRS}
+)
 
 catkin_package(
   CATKIN_DEPENDS
@@ -53,23 +57,23 @@ else()
 endif()
 add_definitions(-DQT_NO_KEYWORDS)
 
-SET(ALL_LIBRARIES "" CACHE INTERNAL "ALL_LIBRARIES")
-
-add_subdirectory("cartographer_rviz")
-
-# Create an empty file for the shared library we require for RViz.
-set(DUMMY_SOURCE ${CMAKE_CURRENT_BINARY_DIR}/empty.cc)
-add_custom_command(
-  OUTPUT  ${DUMMY_SOURCE}
-  COMMAND cmake -E touch ${DUMMY_SOURCE}
-  DEPENDS ${ARG_SRCS}
+## Create an empty file for the shared library we require for RViz.
+set(FILES
+  ${PROJECT_NAME}/drawable_submap.cc
+  ${PROJECT_NAME}/drawable_submap.h
+  ${PROJECT_NAME}/submaps_display.cc
+  ${PROJECT_NAME}/submaps_display.h
 )
-add_library(cartographer_rviz_submaps_visualization ${DUMMY_SOURCE})
+
+add_library(cartographer_rviz_submaps_visualization ${FILES})
 target_link_libraries(cartographer_rviz_submaps_visualization
   ${QT_LIBRARIES}
-  "-Wl,--whole-archive"
-  ${ALL_LIBRARIES}
-  "-Wl,--no-whole-archive"
+  ${catkin_LIBRARIES}
+  ${EIGEN3_LIBRARIES}
+  ${CARTOGRAPHER_LIBRARIES}
+  ${OGRE_LIBRARIES}
+  ${BOOST_LIBRARIES}
+  ${PCL_LIBRARIES}
 )
 
 install(TARGETS cartographer_rviz_submaps_visualization
