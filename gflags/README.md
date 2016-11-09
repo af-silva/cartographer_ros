@@ -7,7 +7,7 @@ https://github.com/gflags/gflags/issues/120
 
 ## About
 
-(Official) https://gflags.github.io/gflags/
+https://gflags.github.io/gflags/
 
 ## Usage
 
@@ -37,5 +37,3 @@ In your main() function:
     ros::init(argc, argv, "MyNode", ros::init_options::AnonymousName);
 
     int mode = FLAGS_mode;
-    
-

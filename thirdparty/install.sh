@@ -28,11 +28,16 @@ cd cartographer/build
 cmake ..
 make -j4 -l4
 sudo make install
-cd ../..
+cd ..
+rm -R build/
+cd ..
 
 mkdir ceres_solver/build
 cd ceres_solver/build
 cmake ..
 make -j4 -l4
-cd ../..
+sudo make install
+cd ..
+rm -R build/
+cd ..
 

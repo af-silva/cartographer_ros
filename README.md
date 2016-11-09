@@ -8,7 +8,12 @@ This branch is intended to be used directly in any ROS workspace without
 the need to compile using catkin_make_isolated and assuming that the 
 libraries Cartographer and Ceres are pre-installed in the system, removing
 the need to compile every time.
+I don't own for any means this project, the modifications made here have as main objective simplify 
+tha usage of the project within any ROS catkin project without any modifications or use of other tools
+If you found anything that can be improved please create a issue. 
 
+For more licence information please refer to the LICENCE file included with the project, or visit
+the official project page at github.com/googlecartographer/cartographer
 
 .. Copyright 2016 The Cartographer Authors
 
@@ -28,3 +33,5 @@ the need to compile every time.
 
 - https://google-cartographer-ros.readthedocs.io/en/latest/
 - https://google-cartographer-ros-for-turtlebots.readthedocs.io/en/latest/
+
+

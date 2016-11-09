@@ -12,30 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 2.8.3)
+# TODO(hrapp): Replace through the one of ceres
 
-project(cartographer_ros_msgs)
+find_program(SPHINX_EXECUTABLE
+             NAMES sphinx-build
+             PATHS
+               /usr/bin
+             DOC "Sphinx")
 
-find_package(Cartographer REQUIRED)
-
-find_package(catkin REQUIRED COMPONENTS geometry_msgs message_generation)
-
-add_message_files(
-  FILES
-    SubmapList.msg
-    TrajectorySubmapList.msg
-    SubmapEntry.msg
-)
-
-add_service_files(
-  FILES
-    SubmapQuery.srv
-    FinishTrajectory.srv
-)
-
-generate_messages(
-  DEPENDENCIES
-    geometry_msgs
-)
-
-catkin_package()
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(Sphinx DEFAULT_MSG SPHINX_EXECUTABLE)

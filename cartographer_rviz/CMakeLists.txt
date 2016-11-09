@@ -38,7 +38,7 @@ catkin_package(
   CATKIN_DEPENDS
     message_runtime
     ${PACKAGE_DEPENDENCIES}
-  INCLUDE_DIRS ${PROJECT_NAME}
+  INCLUDE_DIRS src
 )
 
 set(CMAKE_AUTOMOC ON)
@@ -59,10 +59,10 @@ add_definitions(-DQT_NO_KEYWORDS)
 
 ## Create an empty file for the shared library we require for RViz.
 set(FILES
-  ${PROJECT_NAME}/drawable_submap.cc
-  ${PROJECT_NAME}/drawable_submap.h
-  ${PROJECT_NAME}/submaps_display.cc
-  ${PROJECT_NAME}/submaps_display.h
+  src/drawable_submap.cc
+  src/drawable_submap.h
+  src/submaps_display.cc
+  src/submaps_display.h
 )
 
 add_library(cartographer_rviz_submaps_visualization ${FILES})
